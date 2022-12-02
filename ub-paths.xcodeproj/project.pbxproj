@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C2115946293833EC00A90479 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C2115945293833EC00A90479 /* main.m */; };
+		C2115946293833EC00A90479 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = C2115945293833EC00A90479 /* main.mm */; };
+		C211594F2938367300A90479 /* fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = C211594D2938367300A90479 /* fishhook.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +25,9 @@
 
 /* Begin PBXFileReference section */
 		C2115942293833EC00A90479 /* ub-paths */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "ub-paths"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C2115945293833EC00A90479 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C2115945293833EC00A90479 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
+		C211594D2938367300A90479 /* fishhook.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fishhook.c; sourceTree = "<group>"; };
+		C211594E2938367300A90479 /* fishhook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fishhook.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +60,9 @@
 		C2115944293833EC00A90479 /* ub-paths */ = {
 			isa = PBXGroup;
 			children = (
-				C2115945293833EC00A90479 /* main.m */,
+				C2115945293833EC00A90479 /* main.mm */,
+				C211594D2938367300A90479 /* fishhook.c */,
+				C211594E2938367300A90479 /* fishhook.h */,
 			);
 			path = "ub-paths";
 			sourceTree = "<group>";
@@ -69,6 +74,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C2115949293833EC00A90479 /* Build configuration list for PBXNativeTarget "ub-paths" */;
 			buildPhases = (
+				C21159502938498E00A90479 /* ShellScript */,
 				C211593E293833EC00A90479 /* Sources */,
 				C211593F293833EC00A90479 /* Frameworks */,
 				C2115940293833EC00A90479 /* CopyFiles */,
@@ -114,12 +120,34 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C21159502938498E00A90479 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n$SRCROOT/dylib.sh\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C211593E293833EC00A90479 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2115946293833EC00A90479 /* main.m in Sources */,
+				C211594F2938367300A90479 /* fishhook.c in Sources */,
+				C2115946293833EC00A90479 /* main.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +268,11 @@
 			buildSettings = {
 				CC = "$(SRCROOT)/compiler.py";
 				CODE_SIGN_STYLE = Automatic;
+				CXX = "$(SRCROOT)/compiler.py";
+				OTHER_LDFLAGS = (
+					"-L$(SRCROOT)",
+					"-Wl,-rpath,$(SRCROOT)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -249,6 +282,11 @@
 			buildSettings = {
 				CC = "$(SRCROOT)/compiler.py";
 				CODE_SIGN_STYLE = Automatic;
+				CXX = "$(SRCROOT)/compiler.py";
+				OTHER_LDFLAGS = (
+					"-L$(SRCROOT)",
+					"-Wl,-rpath,$(SRCROOT)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

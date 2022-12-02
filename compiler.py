@@ -6,7 +6,7 @@ import os
 
 new_args = ["xcrun", "clang"]
 for arg in sys.argv[1:]:
-    if arg.endswith("main.m"):
+    if arg.endswith("main.mm"):
         new_args.append(os.path.relpath(arg))
     else:
         new_args.append(arg)
