@@ -39,7 +39,7 @@ __ubsan_get_current_report_data(const char **OutIssueKind,
     realFoo(OutIssueKind, OutMessage, OutFilename, OutLine, OutCol, OutMemoryAddr);
 
     printf("the out filename is '%s'\n", *OutFilename);
-    *OutFilename = "/Users/ksmiley/Downloads/ub-paths/ub-paths/main.mm";
+    *OutFilename = "/Users/ksmiley/Downloads/ub-paths/ub-paths/main.c";
     printf("the out filename is now '%s'\n", *OutFilename);
 
 //    abort();
